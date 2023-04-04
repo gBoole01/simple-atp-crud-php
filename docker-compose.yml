@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  web:
+    image: php-8-apache
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+      - mailcatcher
+    environment:
+      SMTP_HOST: mailcatcher
+      SMTP_PORT: 1025
+    volumes:
+      - ./src:/var/www/html
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mysecretpassword
+      MYSQL_DATABASE: myapp
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - ./data/db:/var/lib/mysql
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: mysecretpassword
