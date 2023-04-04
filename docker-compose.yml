@@ -16,10 +16,10 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: mysecretpassword
-      MYSQL_DATABASE: myapp
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ATPcrud
+      MYSQL_USER: atpcrud
+      MYSQL_PASSWORD: password
     volumes:
       - ./data/db:/var/lib/mysql
   mailcatcher:

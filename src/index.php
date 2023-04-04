@@ -1,4 +1,6 @@
 <?php
+require 'lib/guidv4.php';
+
 $to = "recipient@example.com";
 $subject = "Test Email";
 $message = "This is a test email.";
@@ -9,6 +11,11 @@ if(mail($to, $subject, $message, $headers)) {
 } else {
     echo "Email sending failed.";
 }
+
+for ($i = 0; $i < 10; $i++) {
+    echo guidv4() . "<br>";
+}
+$uuid = guidv4();
 
 $username = "World!";
 ?>
@@ -23,6 +30,6 @@ $username = "World!";
 </head>
 <body>
     <h1>Hello <?= $username; ?></h1>
-    <h2>Test update</h2>
+    <h2>Test <?= $uuid ?></h2>
 </body>
 </html>
