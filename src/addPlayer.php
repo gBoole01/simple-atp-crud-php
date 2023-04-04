@@ -1,7 +1,12 @@
 <?php
 require('lib/dbConnect.php');
-
 $pdo = dbConnect();
+
+$playerId = $_GET['id'] ?? null;
+if (!$playerId) {
+    header('Location: /index.php');
+    exit;
+}
 // TODO: Handle addPlayer Form
 
 // $sql = "SELECT * FROM players WHERE rank BETWEEN 1 AND 3 ORDER BY rank";
