@@ -14,3 +14,7 @@ Before installing this project on your local machine, you need to have Docker an
    1. `localhost:1080`: mailcatcher
 
 The `src` code is binded with docker volume so any change on these files are synced with the container.
+
+## Seed Data
+
+On the first installation, you can access the mysql container via docker or go to phpmyadmin and run the `initDb.sql` script. This will create the players table and add the top 10 players.
