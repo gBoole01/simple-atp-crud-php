@@ -1,24 +1,6 @@
 <?php
 require('lib/dbConnect.php');
 
-function asciiToEmoji($ascii)
-{
-    // Split the ASCII string into two characters
-    $char1 = $ascii[0];
-    $char2 = $ascii[1];
-
-    // Calculate the code point for the first character
-    $code1 = ord($char1) - 65 + 127462;
-
-    // Calculate the code point for the second character
-    $code2 = ord($char2) - 65 + 127462;
-
-    // Combine the code points into a single emoji
-    $emoji = mb_convert_encoding("&#$code1;&#$code2;", "UTF-8", "HTML-ENTITIES");
-
-    return $emoji;
-}
-
 $pdo = dbConnect();
 $sql = "SELECT * FROM players ORDER BY rank";
 $stmt = $pdo->prepare($sql);
