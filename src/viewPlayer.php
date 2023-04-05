@@ -18,6 +18,7 @@ include('inc/header.php'); ?>
 <a href="/rankings.php" class="btn btn-primary align-self-end mb-3">Back to rankings</a>
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center">
+        <img src="/assets/img/players/<?= $player['image'] ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
         <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
         <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
 

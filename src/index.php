@@ -11,11 +11,11 @@ include('inc/header.php'); ?>
 <h1 class="fw-bolder mb-3">Top 3 Players</h1>
 <div class="container-fluid d-flex flex-column gap-3">
     <?php foreach ($result as $player) { ?>
-        <div class="card">
+        <div class="card shadow-lg">
             <div class="card-header d-flex justify-content-between align-items-center">
+                <img class="rounded-2" src="/assets/img/players/<?= $player['image'] ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
                 <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
                 <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
-
             </div>
             <div class="card-body d-flex flex-column">
                 <p class="card-text">Points: <?= $player["points"] ?></p>
