@@ -5,7 +5,7 @@ $pdo = dbConnect();
 $sql = "SELECT * FROM players ORDER BY rank";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$result = $stmt->fetchAll();
+$players = $stmt->fetchAll();
 
 include('inc/header.php'); ?>
 <h1 class="fw-bolder mb-3">Rankings</h1>
@@ -23,8 +23,12 @@ include('inc/header.php'); ?>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($result as $player) { ?>
-                    <tr>
+                <?php foreach ($players as $player) {
+                    if ($player["rank"] <= 10) { ?>
+                        <tr>
+                        <?php } else { ?>
+                        <tr data-aos="fade-left" data-aos-duration="1500" data-aos-once="true">
+                        <?php } ?>
                         <td class="fs-4 fw-bold"><?= $player["rank"] ?></td>
                         <td><?= $player["firstname"] . " " . $player["lastname"] ?></td>
                         <td>
@@ -40,8 +44,8 @@ include('inc/header.php'); ?>
                                 </svg>
                             </a>
                         </td>
-                    </tr>
-                <?php } ?>
+                        </tr>
+                    <?php } ?>
             </tbody>
         </table>
     </div>

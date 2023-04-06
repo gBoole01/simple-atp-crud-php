@@ -1,3 +1,7 @@
+// Initialize AOS
+AOS.init();
+
+// Enable Bootstrap tooltips
 const tooltipTriggerList = document.querySelectorAll(
   '[data-bs-toggle="tooltip"]'
 );
