@@ -17,4 +17,4 @@ The `src` code is binded with docker volume so any change on these files are syn
 
 ## Seed Data
 
-On the first installation, you can access the mysql container via docker or go to phpmyadmin and run the `initDb.sql` script. This will create the players table and add the top 10 players.
+On the first installation, you can access the mysql container via docker or go to phpmyadmin and run the `initDb.sql` script. This will create the players table and add the top 30 players.
