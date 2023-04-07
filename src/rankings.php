@@ -27,8 +27,10 @@ include('inc/header.php'); ?>
             </thead>
             <tbody>
                 <?php foreach ($players as $player) {
-                    if ($player["rank"] <= 10) { ?>
+                    if ($player["rank"] <= 10 && $player["rank"] !== 3) { ?>
                         <tr>
+                        <?php } elseif ($player["rank"] === 3) { ?>
+                        <tr class="border border-top-0 border-3 border-success">
                         <?php } else { ?>
                         <tr data-aos="fade-left" data-aos-duration="1500" data-aos-once="true">
                         <?php } ?>
