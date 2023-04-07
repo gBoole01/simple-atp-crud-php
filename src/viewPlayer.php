@@ -43,14 +43,14 @@ include('inc/header.php'); ?>
     </div>
 </div>
 
-<div>
-    <img src="<?= $playerImage ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
-    <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
-    <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
-    <p class="card-text">Points: <?= $player["points"] ?></p>
-    <p class="card-text">Age: <?= $player["age"] ?></p>
-    <p class="card-text">Country: <?= $countries[$player["country"]] ?></p>
+<div class="card player-infos">
+    <img class="img-thumbnail" src="<?= $playerImage ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
     <img height=35 width=40 src="assets/img/flags/<?= $player['country'] ?>.svg" alt="Flag of <?= $countries[$player['country']] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $countries[$player['country']] ?>">
+    <h2><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
+    <p class="fs-1 fw-bold"><?= $player["rank"] ?></p>
+    <p><span class="fw-bold">Points:</span> <?= $player["points"] ?></p>
+    <p><span class="fw-bold">Age:</span> <?= $player["age"] ?></p>
+    <p><span class="fw-bold">Country:</span> <?= $countries[$player["country"]] ?></p>
 </div>
 
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
