@@ -17,6 +17,8 @@ $stmt->bindParam(':uuid', $playerId, PDO::PARAM_STR);
 $stmt->execute();
 $player = $stmt->fetch();
 
+$playerImage = $player['image'] ? "/assets/img/players/" . $player['image'] : 'https://placehold.co/100x141?text=No+image&font=Montserrat';
+
 include('inc/header.php'); ?>
 <h1 class="fw-bolder mb-3">Player informations</h1>
 <div class="row mb-3 justify-content-between">
@@ -42,7 +44,7 @@ include('inc/header.php'); ?>
 </div>
 
 <div>
-    <img src="/assets/img/players/<?= $player['image'] ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
+    <img src="<?= $playerImage ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
     <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
     <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
     <p class="card-text">Points: <?= $player["points"] ?></p>
