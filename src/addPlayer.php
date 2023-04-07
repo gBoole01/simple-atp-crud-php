@@ -102,7 +102,10 @@ include('inc/header.php'); ?>
         <input type="number" class="form-control" id="points" name="points" required>
         <?= !empty($pointsError) ? "<div class='alert alert-danger my-1'>" . $pointsError . "</div>" : null ?>
     </div>
-    <button type="submit" class="btn btn-primary">Add Player</button>
+    <div class="text-end">
+        <a href="/rankings.php" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-success">Add Player</button>
+    </div>
 </form>
 
 <?php include('inc/footer.php');

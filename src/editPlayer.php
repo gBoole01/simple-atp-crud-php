@@ -112,8 +112,8 @@ include('inc/header.php'); ?>
         <?= !empty($pointsError) ? "<div class='alert alert-danger my-1'>" . $pointsError . "</div>" : null ?>
     </div>
     <div class="text-end">
-        <a href="/rankings.php" class="btn btn-secondary">Back</a>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/viewPlayer.php?id=<?= $player["uuid"] ?>" class="btn btn-secondary">Back</a>
+        <button type="submit" class="btn btn-success">Save</button>
     </div>
 </form>
 
