@@ -1,6 +1,10 @@
 <?php
 require('lib/dbConnect.php');
+require('lib/countries.php');
+
 $pdo = dbConnect();
+
+$countries = getCountries();
 
 $playerId = $_GET['id'] ?? null;
 if (!$playerId) {
@@ -93,7 +97,12 @@ include('inc/header.php'); ?>
     </div>
     <div>
         <label for="country" class="form-label">Country</label>
-        <input type="text" class="form-control" id="country" name="country" required value="<?= $player['country'] ?>">
+        <select class="form-select" id="country" name="country" required>
+            <option disabled value="">Select a country..</option>
+            <?php foreach ($countries as $iso => $country) { ?>
+                <option value="<?= $iso ?>" <?= $player['country'] === $iso ? 'selected' : '' ?>><?= $country ?></option>
+            <?php } ?>
+        </select>
         <?= !empty($countryError) ? "<div class='alert alert-danger my-1'>" . $countryError . "</div>" : null ?>
     </div>
     <div>

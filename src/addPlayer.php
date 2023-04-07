@@ -1,7 +1,10 @@
 <?php
 require('lib/guidv4.php');
 require('lib/dbConnect.php');
+require('lib/countries.php');
 $pdo = dbConnect();
+
+$countries = getCountries();
 
 $firstnameError = "";
 $lastnameError = "";
@@ -84,7 +87,12 @@ include('inc/header.php'); ?>
     </div>
     <div>
         <label for="country" class="form-label">Country</label>
-        <input type="text" class="form-control" id="country" name="country" required>
+        <select class="form-select" id="country" name="country" required>
+            <option disabled selected value="">Select a country..</option>
+            <?php foreach ($countries as $iso => $country) { ?>
+                <option value="<?= $iso ?>"><?= $country ?></option>
+            <?php } ?>
+        </select>
         <?= !empty($countryError) ? "<div class='alert alert-danger my-1'>" . $countryError . "</div>" : null ?>
     </div>
     <div>

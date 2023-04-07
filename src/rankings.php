@@ -1,5 +1,8 @@
 <?php
 require('lib/dbConnect.php');
+require('lib/countries.php');
+
+$countries = getCountries();
 
 $pdo = dbConnect();
 $sql = "SELECT * FROM players ORDER BY rank";
@@ -32,7 +35,7 @@ include('inc/header.php'); ?>
                         <td class="fs-4 fw-bold"><?= $player["rank"] ?></td>
                         <td><?= $player["firstname"] . " " . $player["lastname"] ?></td>
                         <td>
-                            <img class="mx-auto" height=25 width=30 src="assets/img/flags/<?= $player['countryCode'] ?>.svg" alt="Flag of <?= $player['country'] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $player['country'] ?>">
+                            <img class="mx-auto" height=25 width=30 src="assets/img/flags/<?= $player['country'] ?>.svg" alt="Flag of <?= $countries[$player['country']] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $countries[$player['country']] ?>">
                         </td>
                         <td><?= $player["age"] ?></td>
                         <td><?= $player["points"] ?></td>

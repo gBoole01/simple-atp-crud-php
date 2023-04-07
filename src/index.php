@@ -1,6 +1,9 @@
 <?php
 require('lib/dbConnect.php');
 require('lib/rankingMedal.php');
+require('lib/countries.php');
+
+$countries = getCountries();
 
 $pdo = dbConnect();
 $sql = "SELECT * FROM players WHERE rank BETWEEN 1 AND 3 ORDER BY rank";
@@ -27,7 +30,7 @@ include('inc/header.php'); ?>
                 <div class="card player-card">
                     <div class="row justify-content-between align-items-center m-2">
                         <div class="col-4">
-                            <img height=35 width=40 src="assets/img/flags/<?= $player['countryCode'] ?>.svg" alt="Flag of <?= $player['country'] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $player['country'] ?>">
+                            <img height=35 width=40 src="assets/img/flags/<?= $player['country'] ?>.svg" alt="Flag of <?= $countries[$player['country']] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $countries[$player['country']] ?>">
                         </div>
                         <div class="col-4">
                             <div class="fs-1"><?= getRankingMedal($player["rank"]) ?></div>
@@ -38,7 +41,7 @@ include('inc/header.php'); ?>
                         <div class="row bg-light rounded p-3 m-3">
                             <p class="card-text fw-bold text-center mb-2"><?= $player["points"] ?> points</p>
                             <p class="card-text"><span class="fw-bold">Age:</span> <?= $player["age"] ?></p>
-                            <p class="card-text"><span class="fw-bold">Country:</span> <?= $player['country'] ?></p>
+                            <p class="card-text"><span class="fw-bold">Country:</span> <?= $countries[$player['country']] ?></p>
                         </div>
                 </div>
             </a>

@@ -1,6 +1,10 @@
 <?php
 require('lib/dbConnect.php');
+require('lib/countries.php');
+
 $pdo = dbConnect();
+
+$countries = getCountries();
 
 $playerId = $_GET['id'] ?? null;
 if (!$playerId) {
@@ -15,20 +19,11 @@ $player = $stmt->fetch();
 
 include('inc/header.php'); ?>
 <h1 class="fw-bolder mb-3">Player informations</h1>
-<a href="/rankings.php" class="btn btn-success align-self-end mb-3">Back to rankings</a>
-<div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <img src="/assets/img/players/<?= $player['image'] ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
-        <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
-        <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
-
+<div class="row mb-3 justify-content-between">
+    <div class="col-6">
+        <a href="/rankings.php" class="btn btn-success">Back to rankings</a>
     </div>
-    <div class="card-body d-flex flex-column">
-        <p class="card-text">Points: <?= $player["points"] ?></p>
-        <p class="card-text">Age: <?= $player["age"] ?></p>
-        <p class="card-text">Country: <?= $player["country"] ?></p>
-    </div>
-    <div class="card-footer text-end">
+    <div class="col-6 text-end">
         <a class="btn btn-warning" href="/editPlayer.php?id=<?= $player["uuid"] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Edit">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -45,6 +40,17 @@ include('inc/header.php'); ?>
         </span>
     </div>
 </div>
+
+<div>
+    <img src="/assets/img/players/<?= $player['image'] ?>" alt="<?= 'portait of ' . $player['firstname'] . ' ' . $player['lastname'] ?>">
+    <h2 class="card-title"><?= $player["firstname"] . " " . $player["lastname"] ?></h2>
+    <p class="card-text fs-1 fw-bold"><?= $player["rank"] ?></p>
+    <p class="card-text">Points: <?= $player["points"] ?></p>
+    <p class="card-text">Age: <?= $player["age"] ?></p>
+    <p class="card-text">Country: <?= $countries[$player["country"]] ?></p>
+    <img height=35 width=40 src="assets/img/flags/<?= $player['country'] ?>.svg" alt="Flag of <?= $countries[$player['country']] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $countries[$player['country']] ?>">
+</div>
+
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
