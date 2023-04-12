@@ -9,6 +9,6 @@ function getRankingMedal($rank)
         case 3:
             return "🥉";
         default:
-            return "";
+            return $rank;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 require('lib/dbConnect.php');
 require('lib/countries.php');
+require('lib/rankingMedal.php');
 
 $countries = getCountries();
 
@@ -27,14 +28,18 @@ include('inc/header.php'); ?>
             </thead>
             <tbody>
                 <?php foreach ($players as $player) {
-                    if ($player["rank"] <= 10 && $player["rank"] !== 3) { ?>
-                        <tr>
+                    if ($player["rank"] === 1) { ?>
+                        <tr class="bg-success-subtle border border-bottom-0 border-3 border-success">
+                        <?php } elseif ($player["rank"] === 2) { ?>
+                        <tr class="bg-success-subtle border border-top-0 border-bottom-0 border-3 border-success">
                         <?php } elseif ($player["rank"] === 3) { ?>
-                        <tr class="border border-top-0 border-3 border-success">
+                        <tr class="bg-success-subtle border border-top-0 border-3 border-success">
+                        <?php } elseif ($player["rank"] <= 10) { ?>
+                        <tr>
                         <?php } else { ?>
                         <tr data-aos="fade-left" data-aos-duration="1500" data-aos-once="true">
                         <?php } ?>
-                        <td class="fs-4 fw-bold"><?= $player["rank"] ?></td>
+                        <td class="fs-4 fw-bold"><?= getRankingMedal($player["rank"]) ?></td>
                         <td><?= $player["firstname"] . " " . $player["lastname"] ?></td>
                         <td>
                             <img class="mx-auto" height=25 width=30 src="assets/img/flags/<?= $player['country'] ?>.svg" alt="Flag of <?= $countries[$player['country']] ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="<?= $countries[$player['country']] ?>">
